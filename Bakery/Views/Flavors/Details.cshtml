@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+@using Bakery.Models;
+
+@if(Model.JoinEntities.Count == 0)
+{
+  <p>There are not any treats tagged with this flavor yet! </p>
+}
+else
+{
+  <h3> Here's all the treats that belong to the flavor @Model.Name </h3>
+  <ul>
+  @foreach (var join in Model.JoinEntities)
+  {
+    <li>@Html.ActionLink($"{join.Treat.Name}", "Details", "Recipes", new {id = join.Recipe.RecipeId})</li>
+  }
+  </ul> 
+}
+@using (Html.BeginForm("Delete", "Flavors"))
+{
+  @Html.Hidden("id", (int) @Model.FlavorId)
+  <input type="submit" value="Delete Flavor" onclick="return confirm('Are you sure you would like to delete @Model.Name?')">
+}
+

@@ -1,0 +1,14 @@
+@{
+	Layout = "_Layout";
+}
+
+@model Bakery.Models.Flavor
+
+<h3>Add a new flavor tag</h3>
+
+@using (Html.BeginForm())
+{
+	@Html.LabelFor(model => model.Name)
+	@Html.TextBoxFor(model => model.Name)
+	<input type="submit" value="Create"/>
+}

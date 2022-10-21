@@ -1,0 +1,23 @@
+@{
+	Layout = "_Layout";
+}
+
+@model Bakery.Models.Treat
+
+<h3>Editing details of @Model.Name</h3>
+
+@using (Html.BeginForm())
+{
+	@Html.HiddenFor(model => model.TreatId)
+	@Html.LabelFor(model => model.Name)
+	@Html.EditorFor(model => model.Name)
+	@Html.LabelFor(model => model.Ingredients)
+	@Html.EditorFor(model=> model.Ingredients)
+	@Html.Label("Rate this treat from 1-5")
+	@Html.EditorFor(model => model.Rating, new { htmlAttributes = new {type="range", min="1", max="5"}})
+	@Html.Label("Flavor Tagged")
+	@Html.DropDownList("FlavorId")
+	<input type="submit" value="Edit Entry"/>
+}
+
+<p>@Html.ActionLink("Return to Details", "Details", new {id=Model.TreatId})</p>
