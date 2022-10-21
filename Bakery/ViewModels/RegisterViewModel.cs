@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System;
 
-namespace RecipeBox.ViewModels
+namespace Bakery.ViewModels
 {
 	public class RegisterViewModel
 	{
