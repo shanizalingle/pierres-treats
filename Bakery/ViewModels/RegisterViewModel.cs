@@ -6,7 +6,7 @@ namespace Bakery.ViewModels
 	public class RegisterViewModel
 	{
 		[Required]
-		[Display(Name = "Username")]
+		[Display(Name = "User Name")]
 		public string UserName {get; set;}
     
 		[Required]
