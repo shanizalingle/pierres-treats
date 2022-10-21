@@ -23,13 +23,13 @@ namespace Bakery.Controllers
       _db = db;
     }
     
-    public async Task<ActionResult> Index()
-    {
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
-      var userFlavors = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).ToList();
-      return View(userFlavors);
-    }
+    // public async Task<ActionResult> Index()
+    // {
+    //   var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    //   var currentUser = await _userManager.FindByIdAsync(userId);
+    //   var userFlavors = _db.Flavors.Where(entry => entry.User.Id == currentUser.Id).ToList();
+    //   return View(userFlavors);
+    // }
 
     public ActionResult Create()
     {
@@ -45,7 +45,7 @@ namespace Bakery.Controllers
 
       _db.Flavors.Add(flavor);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Index", "Home");
     }
 
     public ActionResult Details(int id)
@@ -57,14 +57,14 @@ namespace Bakery.Controllers
           return View(thisFlavor);
     }
 
-    [HttpPost]
-    public ActionResult Delete(int id)
-    {
-      Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
-      _db.Flavors.Remove(thisFlavor);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
+    // [HttpPost]
+    // public ActionResult Delete(int id)
+    // {
+    //   Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+    //   _db.Flavors.Remove(thisFlavor);
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Index", "Home");
+    // }
 
   }
 }
