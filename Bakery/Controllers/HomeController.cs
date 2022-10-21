@@ -1,14 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
+using Bakery.Models;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace RecipeBox.Controllers
+namespace Bakery.Controllers
 {
   public class HomeController : Controller
   {
-    [HttpGet("/")]
+
+    private readonly BakeryContext _db;
+
+    public HomeController(BakeryContext db)
+    {
+      _db = db;
+    }
+
     public ActionResult Index()
     {
-      return View();
+      ViewBag.Treat = new List<Treat>( _db.Treats);
+      return View( _db.Flavors.ToList());
     }
   }
-  
 }
