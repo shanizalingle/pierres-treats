@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Security.Claims;
 
-namespace RecipeBox.Extensions
+namespace Bakery.Extensions
 {
 	public static class ClaimsPrincipalExtension
 	{
