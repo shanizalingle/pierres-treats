@@ -8,7 +8,7 @@
 
 <h1>Pierres Bakery</h1>
 
-<h2>Flavors</h2>
+<h2>@Html.ActionLink("Flavors", "Index", "Flavors")</h2>
 @if(@Model.Count == 0)
 {
   <p>0 Flavors available | @Html.ActionLink("Add Flavor", "Create", "Flavors")</p>
@@ -25,7 +25,7 @@ else
 }
 
 
-<h2>Treats</h2>
+<h2>@Html.ActionLink("Treats", "Index", "Treats")</h2>
 @if (ViewBag.Treat.Count == 0) 
 {
   <p>0 Treats available | @Html.ActionLink("Add Treat", "Create", "Treats")</p>

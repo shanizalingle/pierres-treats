@@ -1,3 +1,22 @@
+<link rel="stylesheet" href="~/css/styles.css">
+
 <div id="header">
-	<p>@Html.ActionLink("Create an account", "Index", "Account")</p>
+  @using (Html.BeginForm("LogOff", "Account"))
+  {
+    @Html.ActionLink("Home", "Index", "Home")
+  
+    @if (User.Identity.IsAuthenticated)
+    {
+      <span> | </span>
+      @Html.ActionLink("Account", "Index", "Account")<span> | </span>
+
+      <input type="submit" value="Log out" /> 
+      }
+    
+    else
+    {
+      <span> | </span>@Html.ActionLink("Register", "Register", "Account")<span> |</span>
+      @Html.ActionLink("Log in", "Login", "Account")
+    }
+  }
 </div>

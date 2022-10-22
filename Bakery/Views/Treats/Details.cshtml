@@ -33,4 +33,4 @@ else
 	@Html.Hidden("id", (int) @Model.TreatId)
 	<input type="submit" value="Delete Treat" onclick="return confirm('Are you sure you would like to delete the treat for @Model.Name?')"/>
 }
-<p>@Html.ActionLink("Edit the details of this treat", "Edit", new {id=Model.TreatId})</p>
+<p>@Html.ActionLink("Edit treat", "Edit", new {id=Model.TreatId})</p>

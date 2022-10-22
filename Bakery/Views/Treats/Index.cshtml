@@ -1,0 +1,34 @@
+@{
+	Layout = "_Layout";
+}
+
+@using Bakery.Models;
+
+@using (Html.BeginForm("Search", "Treats"))
+{
+	@Html.Label("Find treats by ingredient")
+	@Html.TextBox("query")
+	<input type="submit" value="Search"/>
+}
+
+<h3>All treats:</h3>
+
+@Html.ActionLink("Sort by Rating", "Index", new {sortOrder = "rating"})
+<br>
+@Html.ActionLink("Sort by Name", "Index")
+
+@if (Model.Count == 0)
+{
+	<p>0 treats found</p>
+}
+else
+{
+	<ul>
+		@foreach (Treat treat in Model)
+		{
+			<li>@Html.ActionLink($"{treat.Name}", "Details", new {id=treat.TreatId})</li>
+		}
+	</ul>
+}
+
+<p>@Html.ActionLink("Create a new Treat", "Create")</p>

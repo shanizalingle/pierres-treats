@@ -1,0 +1,11 @@
+#header{
+  width: 100%;
+  min-height: 2rem;
+  padding-left: 0.5em;
+  background-color: #000000;
+  color:white;
+}
+
+body {
+  background-color: rgb(240, 240, 240);
+}

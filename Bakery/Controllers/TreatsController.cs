@@ -23,20 +23,20 @@ namespace Bakery.Controllers
       _db = db;
     }
 
-		// public async Task<ActionResult> Index(string sortOrder)
-		// {
-		// 	var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-		// 	var currentUser = await _userManager.FindByIdAsync(userId);
-		// 	switch (sortOrder)
-		// 	{
-		// 		case "rating":
-		// 			var userTreatsRating = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).OrderByDescending(treat => treat.Rating).ToList();
-		// 			return View(userTreatsRating);
-		// 		default:
-		// 			var userTreatsName = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).OrderBy(treat => treat.Name).ToList();
-		// 			return View(userTreatsName);
-		// 	}
-		// }
+		public async Task<ActionResult> Index(string sortOrder)
+		{
+			var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+			var currentUser = await _userManager.FindByIdAsync(userId);
+			switch (sortOrder)
+			{
+				case "rating":
+					var userTreatsRating = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).OrderByDescending(treat => treat.Rating).ToList();
+					return View(userTreatsRating);
+				default:
+					var userTreatsName = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).OrderBy(treat => treat.Name).ToList();
+					return View(userTreatsName);
+			}
+		}
 
 		public async Task<ActionResult> Create()
 		{
@@ -104,23 +104,23 @@ namespace Bakery.Controllers
 			return RedirectToAction("Details", new {id = treat.TreatId});
 		}
 
-		// [HttpPost]
-		// public ActionResult Delete(int id)
-		// {
-		// 	Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
-		// 	_db.Treats.Remove(thisTreat);
-		// 	_db.SaveChanges();
-		// 	return RedirectToAction("Index");
-		// }
+		[HttpPost]
+		public ActionResult Delete(int id)
+		{
+			Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+			_db.Treats.Remove(thisTreat);
+			_db.SaveChanges();
+			return RedirectToAction("Index");
+		}
 
-		// [HttpPost]
-		// public ActionResult DeleteFlavor(int joinId)
-		// {
-		// 	TreatFlavor thisJoin = _db.TreatFlavor.FirstOrDefault(join => join.TreatFlavorId == joinId);
-		// 	_db.TreatFlavor.Remove(thisJoin);
-		// 	_db.SaveChanges();
-		// 	return RedirectToAction("Index", "Home");
-		// }
+		[HttpPost]
+		public ActionResult DeleteFlavor(int joinId)
+		{
+			TreatFlavor thisJoin = _db.TreatFlavor.FirstOrDefault(join => join.TreatFlavorId == joinId);
+			_db.TreatFlavor.Remove(thisJoin);
+			_db.SaveChanges();
+			return RedirectToAction("Index", "Home");
+		}
 
 		public ActionResult Search(string query)
 		{
